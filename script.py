@@ -1,10 +1,11 @@
 from toptensubreddit import TopTenSubReddit
 import time
+from getpass import getpass
 
 print("IN ORDER TO GRAB THE TOP 10 POSTS FROM YOUR DESIERED SUBREDDIT, YOU MUST FIRST HAVE THE CORRECT CREDENTIALS")
 
 user_username = input("YOUR REDDIT USERNAME")
-user_password = input("YOUR REDDIT PASSWORD")
+user_password = getpass('YOUR REDDIT PASSWORD')
 user_app_name = input("YOUR APP NAME")
 user_personal_use_script = input("YOUR PERSONAL SCRIPT KEY")
 user_secret = input("YOUR SECRET KEY")
