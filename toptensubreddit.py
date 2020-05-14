@@ -15,10 +15,16 @@ class TopTenSubReddit:
         self.app_name = app_name
 
     def get_timestamp(self):
+        #Creating a timestamp to add to our file name
         now = datetime.datetime.now()
         fixed_now = now.strftime("%Y%B%d-%I%M%p")
         return fixed_now
 
+    def create_filename(self):
+        #Creating our filename
+        filename = "{timestamp}_{subreddit}.csv".format(timestamp=self.get_timestamp(), 
+        subreddit=self.subreddit_name)
+        return filename
 
     def get_subreddit(self):
         #Accessing the Reddit API
@@ -48,13 +54,14 @@ class TopTenSubReddit:
         return topics_data
 
     def make_spreadsheet(self):
-        #Grabbing datafram using parse_subreddit method
+        #Grabbing datafram using parse_subreddit method and creating filename using create_filename method
         dataframe_table = self.parse_subreddit()
+        filename = self.create_filename()
         #Finally, making a spreadsheet
-        with open(os.path.join(sys.path[0], "top_ten_subreddit.csv"), "w+") as f:
+        with open(os.path.join(sys.path[0], filename), "w+") as f:
             dataframe_table.to_csv(f, index=False)
 
 test = TopTenSubReddit("learnpython", "rafewey", "Dogeatslion123", "hgqFobaqdlahmA", "dbmCplCckYVFwNuEgYfnPPiDHVE",
 "top 10 posts")
 
-test.get_timestamp()
+test.make_spreadsheet()
