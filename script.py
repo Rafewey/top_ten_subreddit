@@ -18,3 +18,29 @@ class TopTenSubReddit:
         user_agent = self.app_name, username = self.username, password = self.password)
         #Grabbing subreddit
         subreddit = reddit.subreddit(self.subreddit_name)
+        #Grabbing only the top 10 posts
+        top_subreddit = subreddit.top(limit=10, time_filter="day")
+        #Finally, return the var with the stored data
+        return top_subreddit
+
+    def parse_subreddit(self):
+        #Grabbing subreddit info with get_subreddit method
+        subreddit_info = self.get_subreddit()
+
+        #Creating empty dict for subreddit info and appending the info
+        topics_dict = {"title":[], "upvotes":[], "author":[]}
+        for info in subreddit_info:
+            topics_dict["title"].append(info.title)
+            topics_dict["upvotes"].append(info.score)
+            topics_dict["author"].append(info.author)
+        
+        #Turning the dictionary into a dataframe with pandas
+        topics_data = pandas.DataFrame(topics_dict)
+
+        return topics_data
+
+
+test = TopTenSubReddit("learnpython", "rafewey", "Dogeatslion123", "hgqFobaqdlahmA", "dbmCplCckYVFwNuEgYfnPPiDHVE",
+"top 10 posts")
+
+print(test.parse_subreddit())
