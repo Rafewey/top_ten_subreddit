@@ -14,6 +14,12 @@ class TopTenSubReddit:
         self.secret = secret
         self.app_name = app_name
 
+    def get_timestamp(self):
+        now = datetime.datetime.now()
+        fixed_now = now.strftime("%Y%B%d-%I%M%p")
+        return fixed_now
+
+
     def get_subreddit(self):
         #Accessing the Reddit API
         reddit = praw.Reddit(client_id = self.personal_script, client_secret = self.secret,
@@ -51,4 +57,4 @@ class TopTenSubReddit:
 test = TopTenSubReddit("learnpython", "rafewey", "Dogeatslion123", "hgqFobaqdlahmA", "dbmCplCckYVFwNuEgYfnPPiDHVE",
 "top 10 posts")
 
-test.make_spreadsheet()
+test.get_timestamp()
