@@ -60,8 +60,3 @@ class TopTenSubReddit:
         #Finally, making a spreadsheet
         with open(os.path.join(sys.path[0], filename), "w+") as f:
             dataframe_table.to_csv(f, index=False)
-
-test = TopTenSubReddit("learnpython", "rafewey", "Dogeatslion123", "hgqFobaqdlahmA", "dbmCplCckYVFwNuEgYfnPPiDHVE",
-"top 10 posts")
-
-test.make_spreadsheet()
