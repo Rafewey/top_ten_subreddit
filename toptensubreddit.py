@@ -2,6 +2,8 @@
 import praw
 import pandas
 import datetime
+import os
+import sys
 
 class TopTenSubReddit:
     def __init__(self, subreddit_name, username, password, personal_script, secret, app_name):
@@ -43,7 +45,8 @@ class TopTenSubReddit:
         #Grabbing datafram using parse_subreddit method
         dataframe_table = self.parse_subreddit()
         #Finally, making a spreadsheet
-        dataframe_table.to_csv("top_ten_subreddit.csv", index=False)
+        with open(os.path.join(sys.path[0], "top_ten_subreddit.csv"), "w+") as f:
+            dataframe_table.to_csv(f, index=False)
 
 test = TopTenSubReddit("learnpython", "rafewey", "Dogeatslion123", "hgqFobaqdlahmA", "dbmCplCckYVFwNuEgYfnPPiDHVE",
 "top 10 posts")
